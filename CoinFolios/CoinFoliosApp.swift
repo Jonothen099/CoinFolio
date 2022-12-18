@@ -9,9 +9,26 @@ import SwiftUI
 
 @main
 struct CoinFoliosApp: App {
+	@StateObject private var mvm = MasterViewModel()
+	@State private var showLaunchView: Bool = true
+
     var body: some Scene {
         WindowGroup {
-            ContentView()
+			ZStack{
+				MasterView()
+					.environmentObject(mvm)
+				ZStack{
+					if showLaunchView{
+						LaunchView(showLaunchView: $showLaunchView)
+							.transition(.move(edge: .trailing))
+
+					}
+
+				}
+				.zIndex(2.0)
+			}
+			
+
         }
     }
 }
