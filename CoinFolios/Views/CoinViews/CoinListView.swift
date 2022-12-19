@@ -5,15 +5,11 @@
 	//  Created by Jono Jono on 30/10/2022.
 	//
 
-
 import SwiftUI
 
 struct CoinListView: View {
-//	@EnvironmentObject var coinData: CoinDataNetworkManager
 	@EnvironmentObject var mvm: MasterViewModel
-	
-//	@State private var tabBar: UITabBar! = nil
-	
+		
 	var body: some View {
 		NavigationView{
 
@@ -30,21 +26,11 @@ struct CoinListView: View {
 					} else {
 						
 						List(mvm.coinData, id: \.id){ coin in
-//							ZStack(alignment: .leading) {
-									// by adding ZStack
-									// and putting nav link inside the ZStack and add EmptyView() and add 0.0 opacity to the navlink will hide the closure indicator
 							NavigationLink(destination: DetailView(coinModels: coin, maxRangeValue: 0, minRangeValue: 0,firstPrice: 0, lastPrice: 0, chartsTypes: CoinChartView(currentChartSelection: true, min: 0.0, max: 0.0, first: 0.0, last: 0.0))){
 								CoinRowView(coin: coin)
 
 							}
-//								{
-//									EmptyView()
-//										.frame(width: 0)
-//								}.opacity(0.0)
-								
-								// coin row view
-
-//							}
+					
 							.listRowInsets(.init(top: 8, leading: 15, bottom: 10, trailing: -20))
 							//list line separator color
 							.listRowSeparatorTint(Color.themeColor.FaintLineColor)
@@ -62,19 +48,18 @@ struct CoinListView: View {
 				
 
 			}
-				// changing color of the bg
+			// changing color of the bg
 			.background(Color.themeColor.backgroundColor)
 			.scrollContentBackground(.hidden)
-//			.navigationTitle("Market")
 			.toolbar {
-									ToolbarItem(placement: .navigation) {
-											// this sets the screen title in the navigation bar, when the screen is visible
-										Text("Market")
-											.font(.title .bold())
-
-									}
-
-
+				ToolbarItem(placement: .navigation) {
+					// this sets the screen title in the navigation bar, when the screen is visible
+					Text("Market")
+						.font(.title .bold())
+					
+				}
+				
+				
 			}
 			
 		}
@@ -97,7 +82,6 @@ struct CoinListView_Previews: PreviewProvider {
 	static var previews: some View {
 		CoinListView()
 			.environmentObject(MasterViewModel())
-			//			.environmentObject(CoinDataNetworkManager(coinData: CoinData.coinCapExample))
 		
 	}
 }

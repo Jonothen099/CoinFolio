@@ -20,12 +20,6 @@ struct EmptyPortfolioView: View {
 				.resizable()
 				.frame(width: 100, height: 150)
 				.foregroundColor(Color.themeColor.greenThemeColor.opacity(0.5))
-//				.scaleEffect(animationValue)
-//				.animation(
-//					.easeInOut(duration: 0.4)
-//					.repeatCount(3,autoreverses: true), value: animationValue
-//				)
-
 				.rotationEffect(Angle(degrees: animationValue))
 				.animation(
 					.easeInOut(duration: 0.4)
@@ -71,33 +65,6 @@ struct EmptyPortfolioView: View {
 			
 		}
 	}
-//		.toolbar {
-//			ToolbarItem(placement: .navigationBarTrailing){
-//				NavigationLink(destination: PickAssetView()){
-//					Image(systemName:"plus.circle")
-//						.resizable()
-//						.frame(width: 20, height: 20)
-//						.foregroundColor(Color("AccentColor"))
-//						.overlay {
-//							Circle()
-//								.stroke(Color.themeColor.accentColor)
-//								.scaleEffect(animationValue2)
-//								.opacity(2 - animationValue2)
-//								.animation(
-//									.easeOut(duration: 1)
-//									.repeatForever(autoreverses: true), value: animationValue
-//								)
-//
-//						}
-//						.onAppear{
-//							animationValue2 = 1.5
-//
-//						}
-//
-//
-//				}
-//			}
-//		}
 		.onAppear{
 			animationValue += 15
 		}

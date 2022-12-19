@@ -28,17 +28,10 @@ struct PortfolioDetailView: View {
 								Text("(\(asset.symbol))")
 									.font(.subheadline)
 									.padding(.leading, -10)
-								
-								
 							}
-							
 							
 							Text(asset.priceUsd.currencyFormatting())
 								.font(.title2.bold())
-								//					Text(asset.profitLoss?.description.currencyFormatting() ?? "0.0")
-								
-							
-							
 						}
 						.padding(.leading, 20)
 							Spacer()
@@ -51,15 +44,8 @@ struct PortfolioDetailView: View {
 							Text(String(asset.amount ?? 0.0))
 								.font(.title2.bold())
 								.padding(EdgeInsets(top: 0, leading: 0, bottom: 10, trailing: 15))
-
-
-							
 						}
 
-						
-
-						
-					
 				}
 				Divider()
 				
@@ -248,7 +234,6 @@ struct PortfolioStatView: View {
 					
 					
 				}
-//				.padding(.trailing, 40)
 				
 			}
 	}

@@ -22,10 +22,6 @@ struct MoreInfoView: View {
 
 	
 	var body: some View {
-		
-//		ZStack{
-//			Color.themeColor.backgroundColor.ignoresSafeArea()
-			
 			VStack{
 				List{
 					appSection
@@ -45,10 +41,7 @@ struct MoreInfoView: View {
 			.scrollContentBackground(.hidden)
 			.navigationBarTitleDisplayMode(.inline)
 			.navigationTitle("App Information ")
-//		}
-		
-		
-		
+
 	}
 }
 
@@ -81,8 +74,9 @@ extension MoreInfoView {
 			
 			
 			Text("This app is semi-clone of CoinMarketCap app, it capable of displaying top coin's prices, interactive financial candle and line charts.\nFurthermore our portfolio feature allows user to visualise their total asset")
+				.font(.caption)
+				.foregroundColor(.secondary)
 			
-				//			Text("This app is semi-clone of CoinMarketCap app, it capable of displaying top coin's prices, 24 hour changes, and its correspond logo in the main page. \n\nUpon clicking on particular coin, it will navigate to a view showing details of the coin and more importantly it displays beautiful financial candle charts and line charts, which is interactive and real time.")
 		}
 	}
 	
@@ -114,8 +108,11 @@ extension MoreInfoView {
 			
 			
 			Text("I am the sole developer of this app, it developed using SwiftUI and is written in 100% Swift code")
+				.font(.caption)
+				.foregroundColor(.secondary)
 			HStack{
 				Text("Reach me on:")
+					.font(.subheadline.bold())
 				
 					Link(destination: devLinkedInURL) {
 						Image("linkedInIcon")
@@ -127,17 +124,10 @@ extension MoreInfoView {
 					Link(destination: gitHubURL) {
 						Image("githubIcon")
 							.resizable()
-							.frame(width:45, height: 45, alignment: .leading)
+							.frame(width:40, height: 40, alignment: .leading)
 							.aspectRatio(1, contentMode: .fill)
 							.padding(.leading, 10)
 					}
-				
-			
-				
-					
-				
-				
-				
 			}
 
 		}
@@ -151,6 +141,8 @@ extension MoreInfoView {
 				VStack(alignment: .leading){
 					Text("Utilising Apple's latest User Interface Framework, it lets us to design this app in declarative and intuitive way ")
 						.lineLimit(showDescriptionSwiftUI ? nil: 2)
+						.font(.caption)
+						.foregroundColor(.secondary)
 					
 					Button {
 						withAnimation(.linear){
@@ -171,6 +163,8 @@ extension MoreInfoView {
 				VStack(alignment: .leading) {
 					Text("Swift Charts launched in June 2022 WWDC, this is one of Apple newest frameworks, It is concise and packed with full of features. it allows us to build effective and customisable charts with as less code as possible. \nIt is declarative and designed to work with SwiftUI, there are many ways of communicating the pattern using Swift Charts, here in our app we utilised Line and Candle Charts.")
 						.lineLimit(showDescriptionSwiftCharts ? nil: 2)
+						.font(.caption)
+						.foregroundColor(.secondary)
 					
 					Button {
 						withAnimation(.linear){
@@ -190,6 +184,8 @@ extension MoreInfoView {
 				VStack(alignment: .leading) {
 					Text( "To persist all user assets saved within the app, i make use of the CoreData framework, It essentially save our application's permanent data for offline use")
 						.lineLimit(showDescriptionCoreData ? nil: 2)
+						.font(.caption)
+						.foregroundColor(.secondary)
 					
 					Button {
 						withAnimation(.linear){
@@ -218,14 +214,12 @@ extension MoreInfoView {
 				VStack(alignment: .leading){
 					Link("Visit CoinCap.io", destination: coinCapURL)
 				
-
 				}
-				
-				
-				
 			}
 
 			Text("The live coins data of this app is made possible by free API from CoinCap.io")
+				.font(.caption)
+				.foregroundColor(.secondary)
 			
 			HStack{
 				Image("coinGeckoBrand")
@@ -245,6 +239,8 @@ extension MoreInfoView {
 			}
 			
 			Text("The live market data is powered by CoinGecko.com")
+				.font(.caption)
+				.foregroundColor(.secondary)
 			
 			
 			

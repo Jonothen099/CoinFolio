@@ -46,11 +46,6 @@ extension Double {
 		return strDate
 	}
 	
-	
-
-
-
-	
 }
 
 

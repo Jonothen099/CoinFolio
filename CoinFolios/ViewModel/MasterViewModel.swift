@@ -16,30 +16,29 @@ class MasterViewModel: ObservableObject {
 	@Published var coinData: [CoinData] = []
 	@Published var chartModelDataGroup: [ChartModel] = []
 	@Published var masterChart: [ChartDetail] = []
-	@Published var portfolioCoins: [CoinData] = []
-	@Published var totalHoldings: [TotalHolding] = []
-	@Published var totalPortfolio: TotalPortfolio
 	@Published var chartModel: ChartModel
+	@Published var portfolioCoins: [CoinData] = []
+	@Published var totalPortfolio: TotalPortfolio
+
 	
 	@Published var showAlert: Bool = false
 	@Published var portfolioRootViewId = UUID()
 	@Published var homeCoinRootViewId = UUID()
 	private var cancellables = Set<AnyCancellable>()
-	private var coinService = CoinDataNM()
+	private var coinService = CoinDataManager()
 	private let globalMarketDataService = GlobalMarketDataNM()
-	var chartService = ChartManager(chartData: ChartModel.chartExample, chartPrices: ChartPricesModel.chartPricesExample)
+	var chartService = ChartManager(chartData: DummyPreview.instance.dummyChartExample)
 	let portfolioService = CoreDataAssetController()
 	// for chart type and chartInterval value( line or candle)(30d or 90d)
 	@Published var chartInterval: ChartIntervalData = .the90D
 	@Published var chartTypeIsTap: Bool = false
 	@Published var isLoading: Bool = false
-	@Published var portfolioLoading: Bool = false
 	@Published var sortBy : SortBy = .rank
 	
 	init() {
-		coinModel = CoinModel(data: CoinData.newcoinDetailExample2, timestamp: 0)
+		coinModel = CoinModel(data: DummyPreview.instance.justDetailArray, timestamp: 0)
 		globalMarketDataModel = DummyPreview.instance.globalData
-		chartModel = ChartModel.chartExample
+		chartModel = DummyPreview.instance.dummyChartExample
 //		masterChart = chartIntervalValue
 		totalPortfolio = TotalPortfolio(totalPortfolio: 0.0, totalBuyPrice: 0.0)
 		addSubscribers()
@@ -88,13 +87,13 @@ class MasterViewModel: ObservableObject {
 			return
 		}
 		masterChart = chartModelDataGroup[NewChartIntervalStruct(chartInterval: chartInterval).chartTypeSelected(isLineChart: chartTypeIsTap)].data.map{$0}
-		print("this is master chart1 first value: \(masterChart)")
+//		print("this is master chart1 first value: \(masterChart)")
 		
 	}
 	// this func will be called, when chart tab or chart type changed it will re-evaluate the data in masterChart
 	func masterChartValue(){
 		masterChart = chartModelDataGroup[NewChartIntervalStruct(chartInterval: chartInterval).chartTypeSelected(isLineChart: chartTypeIsTap)].data.map{$0}
-		print("this is master chart1 first value: \(masterChart)")
+//		print("this is master chart1 first value: \(masterChart)")
 		
 	}
 	
@@ -125,16 +124,8 @@ class MasterViewModel: ObservableObject {
 	}
 	// this will append the only value of portfolio coin and sort it according to old one first and add the value of prev to the next one
 	func appendToHolding(){
-		portfolioLoading.toggle()
-		defer{
-			portfolioLoading.toggle()
-		}
-		var totals: [TotalHolding] = []
 		var total = 0.0
-		var date: Date = .now
-		var id: String = ""
 		var totalBuy = 0.0
-		
 		var totalPortfolioValue: Double? = 0.0
 		var totalBuyPrice: Double? = 0.0
 		for item in portfolioCoins.reversed() {
@@ -142,25 +133,15 @@ class MasterViewModel: ObservableObject {
 				totalBuyPrice = item.boughtValue.map{value -> Double in totalBuy += value;
 					return totalBuy
 				}
-			
-//			totalPortfolioValue = item.amount.map{ value -> Double in total += value; return total }
-			
-//			totals.append(contentsOf: totals)
-			
-			date = item.dateAndTime ?? .now
-			id = item.id
-			
-			totals = [TotalHolding(id: id, date: date, totalHolding: totalPortfolioValue ?? 0.0)]
+
 		}
 		
 		totalPortfolio = TotalPortfolio(totalPortfolio: totalPortfolioValue ?? 0.0, totalBuyPrice: totalBuyPrice ?? 0.0)
-	
 
-		print("this is totals\(totals)")
 		print("this is total buy price\(String(describing: totalBuyPrice))")
-		print("this is sorted one: \(totalHoldings)")
-//
+
 	}
+	
 	// func to sort the coin data
 	private func sortCoins(sort: SortBy, coins: CoinModel) -> [CoinData]{
 		switch sort{
@@ -185,17 +166,7 @@ class MasterViewModel: ObservableObject {
 		self.coinData = sortCoins(sort: sortBy, coins: coinModel)
 	}
 
-	
-	func spillOut() {
-//		print("this is asset entity\(portfolioService.assetEntity)")
-//		print("this is combined data\(portfolioCoins)")
-//		print("this is Individual viewModel data\(portfolioService.assetVM)")
-//		print("this is coindata that fetched\(newCoinsData.data)")
-		
-	}
-	
-	
-		// conver unix to Date
+//		 conver unix to Date
 	func unixConverter(unixTime: Double) -> Date {
 		var stringDate = ""
 		var strDate : Date

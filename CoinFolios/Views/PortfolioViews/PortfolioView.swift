@@ -18,9 +18,6 @@ struct PortfolioView: View {
 	@State private var selectedAsset = ""
 	@State private var selectedPrice: Double?
 	
-
-
-	
 	var body: some View {
 		ZStack{
 			Color.themeColor.backgroundColor.ignoresSafeArea()
@@ -47,8 +44,7 @@ struct PortfolioView: View {
 					}
 					.navigationBarTitleDisplayMode(.inline)
 					.navigationTitle("Portfolio")
-//					.background(Color.themeColor.backgroundColor)
-//					.scrollContentBackground(.hidden)
+
 					
 				}
 
@@ -131,23 +127,11 @@ extension PortfolioView{
 					.padding(.bottom, -8)
 			
 				HStack {
-//					Text(mvm.totalPortfolio.percentProfitLoss.asPercentage())
 					PercentageNoBGView(priceChange: mvm.totalPortfolio.percentProfitLoss, priceChangeColor: mvm.totalPortfolio.percentProfitLoss.compareAndReturnColor(), priceChangePercentage: mvm.totalPortfolio.percentProfitLoss.asPercentage())
-//						.offset(y: 20)
 					let totalProfitOrLoss = mvm.totalPortfolio.totalPortfolio - mvm.totalPortfolio.totalBuyPrice
 					Text(totalProfitOrLoss.description.currencyFormatting())
 						.font(.headline)
-//					ForEach(mvm.portfolioCoins, id: \.id) { item in
-//						Text(item.profitLoss?.toJust2Decimals().currencyFormatting() ?? "N/A")
-//							.font(.headline)
-//
-//					}
-
-					
-					
-					
 				}
-				
 			}
 			.padding()
 			

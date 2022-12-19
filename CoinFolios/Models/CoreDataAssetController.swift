@@ -11,25 +11,9 @@ import CoreData
 
 class CoreDataAssetController: ObservableObject {
 
-//	@Published var assetVM: [AssetViewModel] = []
 	@Published var assetEntity: [Asset] = []
 	@Published var portfolioData: [CoinData] = []
 	@Published var loadingPortfolio = false
-	
-	
-	
-
-
-
-//	func mappedAssetData() {
-//		assetVM = assetEntity.map(AssetViewModel.init)
-//	}
-
-//	func mappedFromCoreData() {
-//		portfolioData = assetEntity.compactMap(CoinDetail.init)
-//
-//	}
-	
 	
 	
 	func updatePortfolio(coin: CoinData, amount: Double, price: Double, dateAndTime: Date,  transactionNotes: String){
@@ -105,7 +89,7 @@ class CoreDataAssetController: ObservableObject {
 //		mappedAssetData()
 	}
 	
-		// saving coredata func
+	// saving coredata func
 	func save() {
 		do {
 			try AssetPortfolioService.shared.viewContext.save()
@@ -118,32 +102,3 @@ class CoreDataAssetController: ObservableObject {
 	
 }
 
-//struct AssetViewModel {
-//	// getting core data model/Entity and here i am creating normal swift model so that it can be passed around in my Views
-//	// Asset is my coreData Entity name
-//	let coreDataAssest: Asset
-//
-//	var id: String {
-//		coreDataAssest.id ?? "N/A"
-//	}
-////	var id: NSManagedObjectID {
-////		coreDataAssest.objectID
-////	}
-//
-//	var amount: Double {
-//		coreDataAssest.amount
-//	}
-//	var price: Double {
-//		coreDataAssest.price
-//	}
-//
-//	var dateAndTime: Date {
-//		coreDataAssest.dateAndTime ?? .now
-//	}
-//
-//	var transactionNotes: String {
-//		coreDataAssest.transactionNotes ?? "N/A"
-//	}
-//
-//
-//}

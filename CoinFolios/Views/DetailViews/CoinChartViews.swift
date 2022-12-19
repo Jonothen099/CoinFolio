@@ -45,6 +45,12 @@ struct CoinChartView: View {
 			}
 		}
 	}
+
+	
+}
+
+extension CoinChartView {
+	
 	var candleChartView: some View {
 		Chart{
 			ForEach(mvm.masterChart, id: \.self) { chartData in
@@ -54,8 +60,8 @@ struct CoinChartView: View {
 							  yStart: .value("Low Price", chartData.low.convertTodouble()),
 							  yEnd: .value("High Price", chartData.high.convertTodouble()), width: 1)
 				.foregroundStyle(chartData.close.convertTodouble() < chartData.open.convertTodouble() ? Color.themeColor.redChartColor : Color.themeColor.greenChartColor)
-
-
+				
+				
 				RectangleMark(x: .value("Time", date)
 							  , yStart: .value("Open Price ", chartData.open.convertTodouble()),
 							  yEnd: .value("Close Price", chartData.close.convertTodouble()), width: 6)
@@ -66,7 +72,7 @@ struct CoinChartView: View {
 		.chartYScale(domain: min...max)
 		.chartXAxis {
 		}
-
+		
 		.chartOverlay { proxy in
 			GeometryReader { geo in
 				Rectangle().fill(.clear).contentShape(Rectangle())
@@ -86,7 +92,7 @@ struct CoinChartView: View {
 									.onChanged { value in
 										selectedElement = findElement(location: value.location, proxy: proxy, geometry: geo)
 										HapticFeedbackManager.instance.hapticImpact(style: .soft)
-
+										
 									}
 							)
 					)
@@ -141,17 +147,17 @@ struct CoinChartView: View {
 				}
 			}
 		}
-	
-
+		
+		
 	}
 	var lineChartView: some View{
 		Chart {
 			ForEach(mvm.masterChart, id: \.self) { lineChart in
 				let date = mvm.unixConverter(unixTime: Double(lineChart.period))
-
+				
 				let price = Double(lineChart.close)
-
-
+				
+				
 				LineMark(x: .value("Date",date ),
 						 y: .value("Price", price ?? 0.0))
 					//.interpolationMethod(InterpolationMethod.catmullRom)
@@ -168,17 +174,14 @@ struct CoinChartView: View {
 			}
 			
 			if let selectedElement, let lineChart = mvm.masterChart.first(where: { $0.period.unixToDate() == selectedElement.period.unixToDate()})?.close.convertTodouble(){
-//				RuleMark(x: .value("Time", selectedElement.period.unixToDate()))
-//				.foregroundStyle(.secondary)
-//				.lineStyle(StrokeStyle(dash: [5,5]))
 				
 				PointMark(x: .value("Time", selectedElement.period.unixToDate()),
 						  y: .value("Price", lineChart))
 				.symbolSize(CGSize(width: 10, height: 10))
 				.foregroundStyle(.primary)
-		
-			}
 				
+			}
+			
 			
 		}
 		.frame(height: 300)
@@ -189,58 +192,58 @@ struct CoinChartView: View {
 				AxisTick()
 			}
 		}
-//		.chartOverlay{ proxy in
-//			GeometryReader{ g in
-//				Rectangle().fill(.clear).contentShape(Rectangle())
-//					.gesture(
-//						DragGesture(minimumDistance: 0)
-//							.onChanged{ value in
-//								let x = value.location.x - g[proxy.plotAreaFrame].origin.x
-//								if let date: Date = proxy.value(atX: x), let roundedHour = date.nearestHour(){
-//									self.selectedDate = roundedHour
-//								}
-//							}
-//							.onEnded{ value in
-//								self.selectedDate = nil
-//							}
-//
-//					)
-//			}
-//
-//		}
-//		.chartBackground{proxy in
-//			GeometryReader{ geo in
-//			if let selectedDate {
-//				let dateInterval = Calendar.current.dateInterval(of: .minute, for: selectedDate)!
-//				let startPositionX1 = proxy.position(forX: dateInterval.start) ?? 0
-//
-//				let lineX = startPositionX1 + geo[proxy.plotAreaFrame].origin.x
-//				let boxWidth: CGFloat = 100
-//				let boxOffSet = Swift.max(0, Swift.min(geo.size.width - boxWidth, lineX - boxWidth / 2))
-//
-//				ZStack(alignment: .topLeading) {
-//					VStack{
-//						Text("\(selectedDate , format: .dateTime.year().month().day())")
-//						let lineChart = mvm.masterChart.first(where: { $0.period.unixToDate() == selectedDate})?.close.convertTodouble()
-//						let lineIs = String(lineChart ?? 0.0)
-//						Text("\(lineIs)")
-//					}
-//					.background {
-//						ZStack {
-//							RoundedRectangle(cornerRadius: 8)
-//								.fill(.background)
-//							RoundedRectangle(cornerRadius: 8)
-//								.fill(.quaternary.opacity(0.7))
-//						}
-//						.padding(.horizontal, -8)
-//						.padding(.vertical, -4)
-//					}
-//					.offset(x: boxOffSet)
-//				}
-//			}
-//		}
-//
-//		}
+			//		.chartOverlay{ proxy in
+			//			GeometryReader{ g in
+			//				Rectangle().fill(.clear).contentShape(Rectangle())
+			//					.gesture(
+			//						DragGesture(minimumDistance: 0)
+			//							.onChanged{ value in
+			//								let x = value.location.x - g[proxy.plotAreaFrame].origin.x
+			//								if let date: Date = proxy.value(atX: x), let roundedHour = date.nearestHour(){
+			//									self.selectedDate = roundedHour
+			//								}
+			//							}
+			//							.onEnded{ value in
+			//								self.selectedDate = nil
+			//							}
+			//
+			//					)
+			//			}
+			//
+			//		}
+			//		.chartBackground{proxy in
+			//			GeometryReader{ geo in
+			//			if let selectedDate {
+			//				let dateInterval = Calendar.current.dateInterval(of: .minute, for: selectedDate)!
+			//				let startPositionX1 = proxy.position(forX: dateInterval.start) ?? 0
+			//
+			//				let lineX = startPositionX1 + geo[proxy.plotAreaFrame].origin.x
+			//				let boxWidth: CGFloat = 100
+			//				let boxOffSet = Swift.max(0, Swift.min(geo.size.width - boxWidth, lineX - boxWidth / 2))
+			//
+			//				ZStack(alignment: .topLeading) {
+			//					VStack{
+			//						Text("\(selectedDate , format: .dateTime.year().month().day())")
+			//						let lineChart = mvm.masterChart.first(where: { $0.period.unixToDate() == selectedDate})?.close.convertTodouble()
+			//						let lineIs = String(lineChart ?? 0.0)
+			//						Text("\(lineIs)")
+			//					}
+			//					.background {
+			//						ZStack {
+			//							RoundedRectangle(cornerRadius: 8)
+			//								.fill(.background)
+			//							RoundedRectangle(cornerRadius: 8)
+			//								.fill(.quaternary.opacity(0.7))
+			//						}
+			//						.padding(.horizontal, -8)
+			//						.padding(.vertical, -4)
+			//					}
+			//					.offset(x: boxOffSet)
+			//				}
+			//			}
+			//		}
+			//
+			//		}
 		
 		.chartOverlay { proxy in
 			GeometryReader { geo in
@@ -255,7 +258,7 @@ struct CoinChartView: View {
 								selectedElement = findElement(location: value.location, proxy: proxy, geometry: geo)
 								HapticFeedbackManager.instance.hapticImpact(style: .light)
 							}
-							
+						
 					)
 			}
 		}
@@ -266,28 +269,28 @@ struct CoinChartView: View {
 						let periodIntToDate = mvm.unixConverter(unixTime: Double(selectedElement.period))
 						let closePriceToDouble = Double(selectedElement.close)
 						let openPriceToDouble = Double(selectedElement.open)
-
+						
 						let dateInterval = Calendar.current.dateInterval(of: .minute, for: periodIntToDate)!
 						let startPositionX1 = proxy.position(forX: dateInterval.start) ?? 0
-
+						
 						let lineX = startPositionX1 + geo[proxy.plotAreaFrame].origin.x
 						let lineHeight = geo[proxy.plotAreaFrame].maxY
 						let boxWidth: CGFloat = 100
 						let boxOffset = Swift.max(0, Swift.min(geo.size.width - boxWidth, lineX - boxWidth / 2))
-
+						
 						Rectangle()
 							.stroke(style: StrokeStyle(lineWidth: 1, dash: [3]))
 							.foregroundStyle(Color.gray)
 							.frame(width: 1, height: lineHeight)
 							.position(x: lineX, y: lineHeight / 2)
-
+						
 						VStack(alignment: .center) {
 							Text("\(periodIntToDate, format: .dateTime.year().month().day().hour())")
 								.font(.caption)
 								.foregroundStyle(.secondary)
 								//							Text("\(selectedElement.close, format: "f1%" )")
 							Text(String(format: "$%.2f", closePriceToDouble!))
-
+							
 								.font(.caption)
 								.foregroundColor(closePriceToDouble! > openPriceToDouble! ? .green :  .red)
 						}
@@ -308,8 +311,8 @@ struct CoinChartView: View {
 			}
 		}
 		
-
-
+		
+		
 	}
 	var volumeBarChart: some View{
 		Chart{
@@ -328,7 +331,7 @@ struct CoinChartView: View {
 		}
 		.chartYAxis(.hidden)
 		.offset(x: -45)
-
+		
 	}
 	var volumeAreaChart: some View{
 		Chart{
@@ -347,7 +350,7 @@ struct CoinChartView: View {
 		}
 		.chartYAxis(.hidden)
 		.offset(x: -45)
-
+		
 		
 	}
 	
@@ -376,7 +379,7 @@ struct CoinChartView: View {
 		
 		return Swift.max(0, Swift.min(geo.size.width - boxWidth, lineX - boxWidth / 2))
 	}
-	
+
 }
 
 
@@ -395,6 +398,7 @@ enum ChartType: String {
 	case candle = "chart.bar.xaxis"
 }
 
+// chart type line or candle sf symbol
 struct Images: View {
 	let last: Double
 	let first: Double
@@ -412,30 +416,5 @@ struct Images: View {
 }
 
 
-struct EmptyChartView: View{
-	
-	var body: some View{
-		
-		VStack {
-			Chart{
-				BarMark(x: .value("", 0), y: .value("No Data to show", 0))
-					.annotation {
-						VStack(alignment: .center){
-							Text("No data available for this asset")
-								.font(.footnote)
-								.padding(.bottom)
-							ProgressView()
-								.scaleEffect(2)
-						}
-
-					}
-			}
-			.frame(height: 300)
-
-
-		}
-
-	}
-}
 
 

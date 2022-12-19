@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-
+// Filter buttons used to sort the coins according to selected metric
 struct FilteredButtons: View {
 	@EnvironmentObject var mvm: MasterViewModel
 	var body: some View{

@@ -16,21 +16,13 @@ protocol ChartDataService {
 
 class ChartManager: ObservableObject {
 	@Published var chartData: ChartModel
-	@Published var chartPrices: ChartPricesModel
+//	@Published var chartPrices: ChartPricesModel
 	
-	init(chartData: ChartModel, chartPrices: ChartPricesModel){
+	init(chartData: ChartModel){
 		self.chartData = chartData
-		self.chartPrices = chartPrices
 	}
 
-//	enum xRangeInChart: Double{
-//		case minus90Days = -7776000
-//		case minus30Days = -2592000
-//		case minus7Days = -604800
-//		case minus24Hours = -86400
-//
-//	}
-//
+
 //	func loadChartData(id: String, chartIntervalValue: String, selectedRange: Double) async{
 //		await MainActor.run(body: {
 //		loadingState = true
@@ -82,12 +74,11 @@ class ChartManager: ObservableObject {
 		async let the30DaysLine = fetchChartData(id: id, baseUrl: "https://api.coincap.io/v2/candles?exchange=binance&interval=h1&baseId=\(id)&quoteId=tether&start=\(Date.now.addingTimeInterval(-2592000).timeIntervalSince1970*1000)&end=\(endingInUnix)")
 		async let the7DaysLine = fetchChartData(id: id, baseUrl: "https://api.coincap.io/v2/candles?exchange=binance&interval=m15&baseId=\(id)&quoteId=tether&start=\(Date.now.addingTimeInterval(-604800).timeIntervalSince1970*1000)&end=\(endingInUnix)")
 		async let the24HoursLine = fetchChartData(id: id, baseUrl: "https://api.coincap.io/v2/candles?exchange=binance&interval=m5&baseId=\(id)&quoteId=tether&start=\(Date.now.addingTimeInterval(-86400).timeIntervalSince1970*1000)&end=\(endingInUnix)")
-			// line chart
-		
+			// candle chart
 		let(candleChart6M, candleChart30D, candleChart7D, candleChart24H) = await(try the6MonthsCandle, try the30DaysCandle, try the7DaysCandle, try the24HoursCandle)
+			// line chart
+
 		let(lineChart6M, lineChart30D, lineChart7D, lineChart24H) = await(try the6MonthsLine, try the30DaysLine, try the7DaysLine, try the24HoursLine)
-//		try await print("this is the 30 days chart value: \(the30DaysCandle)")
-//			loadingState.toggle()
 
 		return [ candleChart6M, candleChart30D, candleChart7D, candleChart24H, lineChart6M, lineChart30D, lineChart7D, lineChart24H ]
 		

@@ -12,7 +12,7 @@ protocol CoinDataService {
 }
 
 
-class CoinDataNM {
+class CoinDataManager {
 	
 	
 	func fetchCoinData() async throws -> CoinModel  {

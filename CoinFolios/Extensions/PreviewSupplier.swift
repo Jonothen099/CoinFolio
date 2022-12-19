@@ -10,7 +10,7 @@ import SwiftUI
 
 extension PreviewProvider {
 	
-	static var previewDummySupplier: DummyPreview {
+	static var previewSupplier: DummyPreview {
 		return DummyPreview.instance
 	}
 	
@@ -23,20 +23,19 @@ class DummyPreview {
 	private init(){}
 	
 	
-	// for the one with timeStamp
-	let full = CoinModel(data: [CoinData(id: "bitcoin",
-														   rank: "1",
-														   symbol: "BTC",
-														   name: "Bitcoin",
-														   supply: "19193100.0000000000000000",
-														   maxSupply: "21000000.0000000000000000",
-														   marketCapUsd: "397888264525.5591083450053800",
-														   volumeUsd24Hr: "11007783003.0388538590720480",
-														   priceUsd: "20730.7972409646752398",
-														   changePercent24Hr: "0.0394813888297129",
-														   vwap24Hr: "20849.4764965301855711",
-														   explorer: "https://blockchain.info/")],
-										 timestamp: 1667102350328)
+	
+	let justDetailArray = [CoinData(id: "bitcoin",
+												 rank: "1",
+												 symbol: "BTC",
+												 name: "Bitcoin",
+												 supply: "19193100.0000000000000000",
+												 maxSupply: "21000000.0000000000000000",
+												 marketCapUsd: "397888264525.5591083450053800",
+												 volumeUsd24Hr: "11007783003.0388538590720480",
+												 priceUsd: "20730.7972409646752398",
+												 changePercent24Hr: "0.0394813888297129",
+												 vwap24Hr: "20849.4764965301855711",
+												 explorer: "https://blockchain.info/")]
 	
 	// coin Detail
 	let justDetail = CoinData(id: "bitcoin",
@@ -51,6 +50,19 @@ class DummyPreview {
 											  changePercent24Hr: "0.0394813888297129",
 											  vwap24Hr: "20849.4764965301855711",
 											  explorer: "https://blockchain.info/")
+	
+	
+	
+	let dummyChartExample = ChartModel(data: [ChartDetail(
+		open: "9128.7800000000000000",
+		high: "9159.5500000000000000",
+		low: "1911.7200000000000000",
+		close: "19151.2200000000000000",
+		volume: "4821.3840400000000000",
+		period: 1666407600000)],
+										 timestamp: 1666498113801)
+	
+	
 	
 	
 	
@@ -115,7 +127,7 @@ class DummyPreview {
 																																									   "xau": 493365637.0411321,
 																																									   "bits": 52027593203905.07,
 																																									   "sats": 5.202759320390507e+15], totalVolume: ["btc": 2792228.238253275,
-																																																					 "eth": 38176630.37519677,
+																																																				"eth": 38176630.37519677,
 																																																					 "ltc": 608495357.6261349,
 																																																					 "bch": 431731096.707769,
 																																																					 "bnb": 165276660.51068705,

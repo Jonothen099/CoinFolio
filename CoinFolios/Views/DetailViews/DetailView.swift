@@ -23,20 +23,13 @@ struct DetailView: View {
 
 	let chartsTypes: CoinChartView
 	
-	func taskForOld(){
-		Task{
-				// this is the value of whatever user select on the segmented control and it returns string
-				//				chartIntervalValue = ChartIntervals(selectedInterval: currentChartTab).selectedChartInterval
-//			chartIntervalValue = ChartIntervals(selectedInterval: currentChartTab).lineChartInterval(isLineChart: chartIsTap)
-//			selectedRange = ChartIntervals(selectedInterval: currentChartTab).selectedRange(isLineChart: chartIsTap)
-				//			await mvm.getChartData(id: coinModels.id, chartIntervalValue: chartIntervalValue, selectedRange: selectedRange)
-			
-//			await mvm.chartService.loadChartData(id: coinModels.id, chartIntervalValue: chartIntervalValue, selectedRange: selectedRange)
-			
-			
-			
-			
-		}
+	func task(){
+			mvm.masterChartValue()
+			maxRangeValue = NewChartIntervalStruct(chartInterval: mvm.chartInterval).maxValue(chartData: mvm.masterChart)
+			minRangeValue = NewChartIntervalStruct(chartInterval: mvm.chartInterval).minValue(chartData: mvm.masterChart)
+			firstPrice = NewChartIntervalStruct(chartInterval: mvm.chartInterval).getFirstClose(chartData: mvm.masterChart)
+			lastPrice = NewChartIntervalStruct(chartInterval: mvm.chartInterval).getLastClose(chartData: mvm.masterChart)
+		
 	}
 	var body: some View {
 		ScrollView(showsIndicators: false){
@@ -93,113 +86,20 @@ struct DetailView: View {
 						CoinChartView(currentChartSelection: mvm.chartTypeIsTap, min: minRangeValue, max: maxRangeValue, first: firstPrice, last: lastPrice)
 					
 				}
-				VStack{
-//					if mvm.chartTypeIsTap == false{
-//						Chart{
-//							ForEach(mvm.masterChart, id: \.self) { chartData in
-//								let date = mvm.unixConverter(unixTime: Double(chartData.period))
-//								let lowPrice = Double(chartData.low)
-//								let highPrice = Double(chartData.high)
-//								let openPrice = Double(chartData.open)
-//								let closePrice = Double(chartData.close)
-//								RectangleMark(x: .value("Time", date, unit: .hour),
-//											  yStart: .value("Low Price", lowPrice!),
-//											  yEnd: .value("High Price", highPrice!), width: 1)
-//								.foregroundStyle(closePrice! < openPrice! ? Color.themeColor.redChartColor : Color.themeColor.greenChartColor)
-//								
-//								RectangleMark(x: .value("Time", date, unit: .hour),
-//											  yStart: .value("Open Price", openPrice!),
-//											  yEnd: .value("Close Price", closePrice!), width: 6)
-//								.foregroundStyle(closePrice! < openPrice! ? Color.themeColor.redChartColor : Color.themeColor.greenChartColor)
-//							}
-//						}
-//						.chartYScale(domain: minRangeValue...maxRangeValue)
-//						.frame(height: 300)
-//
-//						
-//					} else {
-//						Chart{
-//							ForEach(mvm.masterChart, id: \.self) { lineChart in
-//								let date = mvm.unixConverter(unixTime: Double(lineChart.period))
-//								
-//								let price = Double(lineChart.close)
-//								
-//								
-//								LineMark(x: .value("Date",date ),
-//										 y: .value("Price", price ?? 0.0))
-//									//.interpolationMethod(InterpolationMethod.catmullRom)
-//								.lineStyle(StrokeStyle(lineWidth: 1.5))
-//								.foregroundStyle(lastPrice > firstPrice ? Color.themeColor.greenChartColor : Color.themeColor.redChartColor)
-//
-//								
-//								
-//								let greenGradient = LinearGradient(colors: [.green.opacity(0.5),Color.themeColor.greenChartColor.opacity(0.01) ], startPoint: .top, endPoint: .bottom)
-//								let redGradient = LinearGradient(colors: [.red.opacity(0.5),Color.themeColor.redChartColor.opacity(0.01) ], startPoint: .top, endPoint: .bottom)
-//								
-//								AreaMark(
-//									x: .value("date", date),
-//									yStart: .value("amount", lineChart.close.convertTodouble()),
-//									// get the max close value or adjust to your use case
-//									yEnd: .value("amountEnd", minRangeValue))
-//								.foregroundStyle(lastPrice > firstPrice ? greenGradient : redGradient)
-//
-//							}
-//						}
-//						.chartYScale(domain: minRangeValue...maxRangeValue)
-//						.frame(height: 300)
-//
-//					}
-					
-					
-//					if mvm.chartModel.data.isEmpty{
-//						EmptyChartView()
-//					}
-//					if mvm.chartService.loadingState{
-//						LoadingView(loadingTile: "Loading", loadingFrameHeight: 300, loadingColor: Color.themeColor.accentColor, loadingSize: 2)
-//					}else {
-//							// this is calling the chartView
-//						CoinChartView(currentChartSelection: chartIsTap, min: minRangeValue, max: maxRangeValue, first: firstPrice, last: lastPrice)
-//							.animation(.easeOut)
-//
-//							// This is important, this onChange{} Modifier can be attached to any View, and will run the code of our choosing when the @State var changes in our program, here i use the currentChartTab to recall the api with the new value being pass in from user interaction in picker/ segmented control which trigger @State var currentChartTab i set up using enum
-//							.onChange(of: currentChartTab) { newValue in
-//								print("Name changed to \(currentChartTab)!")
-//									// do this when currentChartTab value changed
-//								taskForOld()
-////								task()
-//							}
-//							.onChange(of: chartIsTap) { newValue in
-//
-//								print("Changed chart type")
-//								taskForOld()
-////								task()
-//							}
-//
-//
-//					}
+			
 										
 					VStack{
 						CoinDetailVGridView(coin: coinModels)
 					}.padding(.top, 10)
 					
-				}
 				.onChange(of: mvm.chartInterval) { newValue in
-					print("Name changed to \(mvm.chartInterval)!")
-						// do this when currentChartTab value changed
-					mvm.masterChartValue()
-					maxRangeValue = NewChartIntervalStruct(chartInterval: mvm.chartInterval).maxValue(chartData: mvm.masterChart)
-					minRangeValue = NewChartIntervalStruct(chartInterval: mvm.chartInterval).minValue(chartData: mvm.masterChart)
-					firstPrice = NewChartIntervalStruct(chartInterval: mvm.chartInterval).getFirstClose(chartData: mvm.masterChart)
-					lastPrice = NewChartIntervalStruct(chartInterval: mvm.chartInterval).getLastClose(chartData: mvm.masterChart)
+//					print("Name changed to \(mvm.chartInterval)!")
+					// do this when currentChartTab value changed
+					task()
 				}
 				.onChange(of: mvm.chartTypeIsTap) { newValue in
-					mvm.masterChartValue()
-					maxRangeValue = NewChartIntervalStruct(chartInterval: mvm.chartInterval).maxValue(chartData: mvm.masterChart)
-					minRangeValue = NewChartIntervalStruct(chartInterval: mvm.chartInterval).minValue(chartData: mvm.masterChart)
-					firstPrice = NewChartIntervalStruct(chartInterval: mvm.chartInterval).getFirstClose(chartData: mvm.masterChart)
-					lastPrice = NewChartIntervalStruct(chartInterval: mvm.chartInterval).getLastClose(chartData: mvm.masterChart)
-					
-					print("Changed chart type")
+					task()
+//					print("Changed chart type")
 				}
 			}
 		}
@@ -223,14 +123,7 @@ struct DetailView: View {
 		}
 		.task {
 			await mvm.getChartData(id: coinModels.id)
-			maxRangeValue = NewChartIntervalStruct(chartInterval: mvm.chartInterval).maxValue(chartData: mvm.masterChart)
-			minRangeValue = NewChartIntervalStruct(chartInterval: mvm.chartInterval).minValue(chartData: mvm.masterChart)
-			print("max:\(maxRangeValue) min: \(minRangeValue)")
-			firstPrice = NewChartIntervalStruct(chartInterval: mvm.chartInterval).getFirstClose(chartData: mvm.masterChart)
-			lastPrice = NewChartIntervalStruct(chartInterval: mvm.chartInterval).getLastClose(chartData: mvm.masterChart)
-			print("first:\(firstPrice) last: \(lastPrice)")
-
-			
+			task()
 			
 		}
 			

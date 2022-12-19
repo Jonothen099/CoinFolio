@@ -10,25 +10,15 @@ import SwiftUI
 struct AddAssetView: View {
 	let coinModels: CoinData
 
-//	@EnvironmentObject var coinData: CoinDataNetworkManager
 	@Environment(\.presentationMode) var presentation
 	@EnvironmentObject var mvm: MasterViewModel
-//	@StateObject private var coreDataAssetVM = CoreDataAssetController()
-	
-	@State var selectedTransaction:  TransactionMode = .Buy
 
-	
 	@State private var amount: String = ""
 	@State private var price: String = ""
 	@State private var dateAndTime = Date.now
 	@State private var transactionNotes: String = ""
 	@State private var errorMessages: [String] = []
 	
-//	enum ErrorMessages: String{
-//		case amountIsEmpty = ""
-//		case priceIsEmpty = ""
-//		case dateIsEmpty = "Date of purchased required"
-//	}
 	
 	func validateForm() -> Bool{
 		errorMessages = []
@@ -49,24 +39,10 @@ struct AddAssetView: View {
 	
 	var body: some View {
 		
-		
-		
 		ZStack {
 			Color.themeColor.backgroundColor
 				.ignoresSafeArea()
 			VStack{
-//				Picker("", selection: $selectedTransaction) {
-//					ForEach(TransactionMode.allCases, id: \.self) { transcation in
-//						Text(transcation.rawValue)
-//
-//					}
-//				}.pickerStyle(.segmented)
-//					.padding()
-	//
-	//			Button("print core data ") {
-	//				print("\(mvm.coinModel.data)")
-	//
-	//			}
 							
 				VStack {
 					Form(){
@@ -113,7 +89,6 @@ struct AddAssetView: View {
 								Button {
 									print("save button clicked")
 									mvm.updatePortfolioInCoreData(coin: coinModels, amount: amount.convertTodouble(), price: price.convertTodouble(), dateAndTime: dateAndTime, transactionNotes: transactionNotes)
-									mvm.spillOut()
 									mvm.showAlert.toggle()
 									
 								}
@@ -197,20 +172,9 @@ struct AddAssetView_Previews: PreviewProvider {
 			AddAssetView(coinModels: DummyPreview.instance.justDetail)
 				.environmentObject(MasterViewModel())
 		}
-
-//			.environmentObject(CoinDataNetworkManager(coinData: CoinData.coinCapExample))
-
-
-
 	}
 }
 
-
-enum TransactionMode: String, CaseIterable {
-	case Buy
-	case Sell
-	case Transfer
-}
 
 
 	// dismisses keyboard when tap other part of screen

@@ -36,10 +36,7 @@ struct MasterView: View {
 			.tabItem {
 				Label("More", systemImage: "list.bullet")
 			}
-				//							.toolbar(.visible, for: .tabBar)
-				//							.toolbarBackground(
-				//								Color.yellow,
-				//								for: .tabBar)
+				
 		}
 		// get rid of this if tab bar is invisible
 		.tint(.themeColor.greenThemeColor.opacity(0.7))
@@ -64,44 +61,6 @@ struct MasterView_Previews: PreviewProvider {
 		
 	}
 }
-
-	//struct ExtractedView: View {
-	//	var body: some View {
-	//		NavigationView {
-	//
-	//
-	//			VStack {
-	//
-	//				VStack {
-	//
-	//					List {
-	//						ForEach(1..<25){ item in
-	//
-	//							NavigationLink(destination: Text("next view")) {
-	//								Text("Home Content")
-	//
-	//							}
-	//
-	//						}
-	//						.listRowBackground(Color("AppThemColor"))
-	//
-	//					}
-	//					.navigationTitle("Home Title")
-	//				}
-	//
-	//			}
-	//			.background(Color("AppThemColor"))
-	//			.scrollContentBackground(.hidden)
-	//
-	//		}
-	//		.listRowBackground(Color(.red))
-	//
-	//
-	//
-	//
-	//
-	//	}
-	//}
 
 
 
