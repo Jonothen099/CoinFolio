@@ -27,7 +27,7 @@ struct LaunchView: View {
 			ZStack{
 				if showText{
 					HStack(spacing: 5){
-						ForEach(appIconText.indices) { index in
+						ForEach(appIconText.indices, id: \.self) { index in
 							Text(appIconText[index])
 								.font(.headline)
 								.fontWeight(.heavy)

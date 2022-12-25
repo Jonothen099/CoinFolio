@@ -11,10 +11,7 @@ protocol CoinDataService {
 	func fetchCoinData() async throws -> CoinModel
 }
 
-
 class CoinDataManager {
-	
-	
 	func fetchCoinData() async throws -> CoinModel  {
 		let plainUrl = "https://api.coincap.io/v2/assets"
 		guard let url = URL(string: plainUrl) else{
@@ -29,9 +26,7 @@ class CoinDataManager {
 		return decoded
 		
 	}
-	
-	
-	
+
 }
 
 

@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "FB5A73182904F3AD002510B9"
-               BuildableName = "CoinFolios.app"
-               BlueprintName = "CoinFolios"
+               BuildableName = "CoinFolio.app"
+               BlueprintName = "CoinFolio"
                ReferencedContainer = "container:CoinFolios.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -46,8 +46,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "FB5A73182904F3AD002510B9"
-            BuildableName = "CoinFolios.app"
-            BlueprintName = "CoinFolios"
+            BuildableName = "CoinFolio.app"
+            BlueprintName = "CoinFolio"
             ReferencedContainer = "container:CoinFolios.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -63,8 +63,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "FB5A73182904F3AD002510B9"
-            BuildableName = "CoinFolios.app"
-            BlueprintName = "CoinFolios"
+            BuildableName = "CoinFolio.app"
+            BlueprintName = "CoinFolio"
             ReferencedContainer = "container:CoinFolios.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

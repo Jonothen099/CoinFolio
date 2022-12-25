@@ -8,7 +8,7 @@
 import SwiftUI
 
 @main
-struct CoinFoliosApp: App {
+struct CoinFolioApp: App {
 	@StateObject private var mvm = MasterViewModel()
 	@State private var showLaunchView: Bool = true
 

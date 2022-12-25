@@ -14,7 +14,7 @@
 		FB1A0C9029290CE700308EB8 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1A0C8F29290CE700308EB8 /* LoadingView.swift */; };
 		FB4CB240291295F500FACE54 /* PickAssetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4CB23F291295F500FACE54 /* PickAssetView.swift */; };
 		FB4CB2422912A0D700FACE54 /* MasterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4CB2412912A0D700FACE54 /* MasterView.swift */; };
-		FB5A731D2904F3AD002510B9 /* CoinFoliosApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB5A731C2904F3AD002510B9 /* CoinFoliosApp.swift */; };
+		FB5A731D2904F3AD002510B9 /* CoinFolioApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB5A731C2904F3AD002510B9 /* CoinFolioApp.swift */; };
 		FB5A73212904F3AD002510B9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FB5A73202904F3AD002510B9 /* Assets.xcassets */; };
 		FB5A73242904F3AD002510B9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FB5A73232904F3AD002510B9 /* Preview Assets.xcassets */; };
 		FB5A732F2904F488002510B9 /* ChartModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB5A732E2904F488002510B9 /* ChartModel.swift */; };
@@ -56,8 +56,8 @@
 		FB1A0C8F29290CE700308EB8 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		FB4CB23F291295F500FACE54 /* PickAssetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickAssetView.swift; sourceTree = "<group>"; };
 		FB4CB2412912A0D700FACE54 /* MasterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterView.swift; sourceTree = "<group>"; };
-		FB5A73192904F3AD002510B9 /* CoinFolios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoinFolios.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		FB5A731C2904F3AD002510B9 /* CoinFoliosApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinFoliosApp.swift; sourceTree = "<group>"; };
+		FB5A73192904F3AD002510B9 /* CoinFolio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoinFolio.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FB5A731C2904F3AD002510B9 /* CoinFolioApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinFolioApp.swift; sourceTree = "<group>"; };
 		FB5A73202904F3AD002510B9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FB5A73232904F3AD002510B9 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		FB5A732E2904F488002510B9 /* ChartModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartModel.swift; sourceTree = "<group>"; };
@@ -150,7 +150,7 @@
 		FB5A731A2904F3AD002510B9 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				FB5A73192904F3AD002510B9 /* CoinFolios.app */,
+				FB5A73192904F3AD002510B9 /* CoinFolio.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -160,7 +160,7 @@
 			children = (
 				FB87B7AD294729260086B6D4 /* Launch */,
 				FB87B7AC294728950086B6D4 /* Info.plist */,
-				FB5A731C2904F3AD002510B9 /* CoinFoliosApp.swift */,
+				FB5A731C2904F3AD002510B9 /* CoinFolioApp.swift */,
 				FB5A73322904F715002510B9 /* Services */,
 				FB5A732D2904F46D002510B9 /* Models */,
 				FB1A0C5D2924B63600308EB8 /* ViewModel */,
@@ -281,9 +281,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		FB5A73182904F3AD002510B9 /* CoinFolios */ = {
+		FB5A73182904F3AD002510B9 /* CoinFolio */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = FB5A73272904F3AD002510B9 /* Build configuration list for PBXNativeTarget "CoinFolios" */;
+			buildConfigurationList = FB5A73272904F3AD002510B9 /* Build configuration list for PBXNativeTarget "CoinFolio" */;
 			buildPhases = (
 				FB5A73152904F3AD002510B9 /* Sources */,
 				FB5A73162904F3AD002510B9 /* Frameworks */,
@@ -293,9 +293,9 @@
 			);
 			dependencies = (
 			);
-			name = CoinFolios;
+			name = CoinFolio;
 			productName = CoinFolios;
-			productReference = FB5A73192904F3AD002510B9 /* CoinFolios.app */;
+			productReference = FB5A73192904F3AD002510B9 /* CoinFolio.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -326,7 +326,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				FB5A73182904F3AD002510B9 /* CoinFolios */,
+				FB5A73182904F3AD002510B9 /* CoinFolio */,
 			);
 		};
 /* End PBXProject section */
@@ -381,7 +381,7 @@
 				FB5A732F2904F488002510B9 /* ChartModel.swift in Sources */,
 				FBE615CD2920977B00F6552E /* MoreInfoView.swift in Sources */,
 				FBAE16482912A62E0079AA94 /* PortfolioView.swift in Sources */,
-				FB5A731D2904F3AD002510B9 /* CoinFoliosApp.swift in Sources */,
+				FB5A731D2904F3AD002510B9 /* CoinFolioApp.swift in Sources */,
 				FBE615C9291FA93F00F6552E /* StringAndDouble.swift in Sources */,
 				FB5A7338290A7866002510B9 /* DetailView.swift in Sources */,
 				FB87B78D294585F00086B6D4 /* PortfolioDetailView.swift in Sources */,
@@ -517,6 +517,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CoinFolios/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = CoinFolio;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
@@ -547,6 +548,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CoinFolios/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = CoinFolio;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
@@ -577,7 +579,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		FB5A73272904F3AD002510B9 /* Build configuration list for PBXNativeTarget "CoinFolios" */ = {
+		FB5A73272904F3AD002510B9 /* Build configuration list for PBXNativeTarget "CoinFolio" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				FB5A73282904F3AD002510B9 /* Debug */,

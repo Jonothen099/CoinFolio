@@ -123,7 +123,13 @@ struct DetailView: View {
 		}
 		.task {
 			await mvm.getChartData(id: coinModels.id)
-			task()
+			maxRangeValue = NewChartIntervalStruct(chartInterval: mvm.chartInterval).maxValue(chartData: mvm.masterChart)
+			minRangeValue = NewChartIntervalStruct(chartInterval: mvm.chartInterval).minValue(chartData: mvm.masterChart)
+			print("max:\(maxRangeValue) min: \(minRangeValue)")
+			firstPrice = NewChartIntervalStruct(chartInterval: mvm.chartInterval).getFirstClose(chartData: mvm.masterChart)
+			lastPrice = NewChartIntervalStruct(chartInterval: mvm.chartInterval).getLastClose(chartData: mvm.masterChart)
+			print("first:\(firstPrice) last: \(lastPrice)")
+			
 			
 		}
 			
