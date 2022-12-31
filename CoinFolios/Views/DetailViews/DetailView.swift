@@ -140,7 +140,7 @@ struct DetailView: View {
 struct DetailView_Previews: PreviewProvider {
 	static var previews: some View {
 		NavigationView {
-			DetailView(coinModels: DummyPreview.instance.justDetail , maxRangeValue: 0, minRangeValue: 0, firstPrice: 0, lastPrice: 0, chartsTypes: CoinChartView(currentChartSelection: true, min: 0.0, max: 0.0, first: 0.0, last: 0.0))
+			DetailView(coinModels: previewSupplier.justDetail , maxRangeValue: 0, minRangeValue: 0, firstPrice: 0, lastPrice: 0, chartsTypes: CoinChartView(currentChartSelection: true, min: 0.0, max: 0.0, first: 0.0, last: 0.0))
 				.environmentObject(MasterViewModel())
 
 			

@@ -19,7 +19,6 @@ class AssetPortfolioService: ObservableObject {
 	init(){
 		container.loadPersistentStores{ description, error in
 			if let error = error {
-				print("Failed to load core data: \(error.localizedDescription)")
 				fatalError("Failed to load core data: \(error.localizedDescription)")
 
 			}

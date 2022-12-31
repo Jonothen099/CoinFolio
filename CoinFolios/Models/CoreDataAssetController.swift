@@ -91,6 +91,7 @@ class CoreDataAssetController: ObservableObject {
 	
 	// saving coredata func
 	func save() {
+		
 		do {
 			try AssetPortfolioService.shared.viewContext.save()
 		} catch {
